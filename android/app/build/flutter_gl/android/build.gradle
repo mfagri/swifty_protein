@@ -1,0 +1,8 @@
+android {
+    namespace "com.example.flutter_gl"
+    compileSdkVersion 33
+
+    defaultConfig {
+        minSdkVersion 21
+    }
+}

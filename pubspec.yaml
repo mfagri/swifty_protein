@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   # three_dart: ^0.0.16
   webview_flutter: ^4.10.0
+  flutter_native_splash: ^2.4.3
+  lottie: ^3.0.0
   device_preview: ^1.2.0
   iconsax: ^0.0.8
   http: ^0.13.6
@@ -66,6 +68,7 @@ flutter:
     - assets/ligands.txt
     - assets/images/back.gif
     - assets/images/google.png
+    - assets/animation
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -70,6 +70,8 @@ flutter:
     - assets/images/back.gif
     - assets/images/google.png
     - assets/images/atom2.png
+    - assets/images/atom3.png
+    - assets/images/atom4.png
     - assets/animation/
     - assets/animation/atom.json
     - assets/animation/back.json

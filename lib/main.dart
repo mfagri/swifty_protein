@@ -8,7 +8,7 @@ import 'package:lottie/lottie.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: false, // Add this line
+        // enabled: false,
         builder: (context) => const MyApp(), // Changed this line
       ),
     );
@@ -19,16 +19,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Add this for DevicePreview
-      locale: DevicePreview.locale(context), // Add this for DevicePreview
-      builder: DevicePreview.appBuilder, // Add this for DevicePreview
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       title: 'Molecule Viewer',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const SplashScreen(), // Changed this to start with SplashScreen
+      home: const SplashScreen(),
     );
   }
 }

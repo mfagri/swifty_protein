@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> loadSplash() async {
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 2));
     if (mounted) {
       await _animationController.forward();
       onDoneLoading();

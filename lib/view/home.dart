@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:swifty_protein/view/model_viewer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -75,6 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         leading: const Icon(Icons.search),
                         hintText: 'Search for ligands',
+                        hintStyle: WidgetStateProperty.all<TextStyle>(
+                          const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: '_2',
+                          ),
+                        ),
                       );
                     },
                     suggestionsBuilder:
@@ -84,9 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           .where((ligand) => ligand.any((element) =>
                               element.toLowerCase().contains(keyword)))
                           .map((ligand) => ListTile(
-                                title: Text(ligand[0]),
-                                subtitle:
-                                    Text(ligand.length > 1 ? ligand[1] : ''),
+                                title: Text(ligand[0],
+                                    style: const TextStyle(
+                                        fontFamily: '_2',
+                                        fontWeight: FontWeight.bold)),
+                                subtitle: Text(
+                                    ligand.length > 1 ? ligand[1] : '',
+                                    style: const TextStyle(fontFamily: '_2')),
                                 onTap: () {
                                   controller.closeView(ligand[0]);
                                   setState(() {
@@ -103,10 +115,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   'Selected ligand: $_selectedLigand',
                   style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 20,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: '_2'),
                 )
               else
                 const SizedBox(),
@@ -137,7 +149,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       });
                     },
-                    child: const Text('View Model'),
+                    child: const Text(
+                      'View Model',
+                      style: TextStyle(
+                          fontFamily: '_2', fontWeight: FontWeight.bold),
+                    ),
                   ),
                 )
               else
@@ -158,10 +174,69 @@ class _HomeScreenState extends State<HomeScreen> {
                           _selectedLigand = _ligands[index][0];
                         });
                       },
-                      child: Card(
-                        color: Colors.grey[200],
-                        child: Center(
-                          child: Text(_ligands[index][0]),
+                      // child: Container(
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(12),
+                      //     color: Colors.white,
+                      //     boxShadow: [
+                      //       BoxShadow(
+                      //         color: Colors.grey.withOpacity(0.5),
+                      //         spreadRadius: 5,
+                      //         blurRadius: 7,
+                      //         offset: Offset(0, 3),
+                      //       ),
+                      //     ],
+                      //   ),
+                      //   child: Column(
+                      //     children: [
+                      //       Icon(Icons.person,
+                      //           size: 24, color: Colors.blueAccent),
+                      //       Container(
+                      //         decoration: const BoxDecoration(
+                      //             color: Colors.blueAccent,
+                      //             borderRadius: BorderRadius.only(
+                      //                 bottomRight: Radius.circular(12),
+                      //                 bottomLeft: Radius.circular(12))),
+                      //         child: Text("Student"),
+                      //         padding: const EdgeInsets.all(12),
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                blurRadius: 7,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset(
+                                  'assets/images/atom2.png',
+                                  height: 70,
+                                ),
+                              ),
+                              const Spacer(),
+                              Text(
+                                _ligands[index][0],
+                                style: const TextStyle(
+                                  fontFamily: '_2',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

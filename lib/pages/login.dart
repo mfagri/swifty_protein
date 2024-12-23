@@ -146,63 +146,63 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                InkWell(
-                  onTap: () async {
-                    _authenticate(context);
-                  },
-                  child: Container(
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
+                  child: SizedBox(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 75 / 100,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                          fontFamily: 'my',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Iconsax.finger_scan,
-                      color: Colors.white,
-                      size: 40,
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () async {
+                        _authenticate(context);
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(
+                          Iconsax.finger_scan,
+                          color: Colors.white,
+                          size: 35,
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              'Forget Password?',
-              style: TextStyle(fontFamily: 'my'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                height: 40,
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      fontFamily: 'my',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            const Text('Forget Password?', style: TextStyle(fontFamily: 'my')),
             Row(
               children: [
                 Expanded(
@@ -237,7 +237,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: SizedBox(
-                height: 40,
+                height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
                   style:

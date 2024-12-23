@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:swifty_protein/pages/signup.dart';
 import 'package:lottie/lottie.dart';
+import 'package:swifty_protein/view/home.dart';
+import 'package:local_auth/local_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,17 +15,67 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Future<void> _authenticate(BuildContext context) async {
+    final LocalAuthentication localAuth = LocalAuthentication();
+
+    try {
+      final List<BiometricType> availableBiometrics =
+          await localAuth.getAvailableBiometrics();
+
+      log(availableBiometrics.toString());
+      if (availableBiometrics.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No biometrics available')),
+        );
+        return;
+      }
+
+      // Authenticate using biometrics
+      final bool didAuthenticate = await localAuth.authenticate(
+        localizedReason: 'Please authenticate to access your account.',
+        options: const AuthenticationOptions(
+          stickyAuth: true,
+          sensitiveTransaction: true,
+        ),
+      );
+
+      if (didAuthenticate) {
+        // Navigate to the HomeScreen on success
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Authentication failed')),
+        );
+      }
+    } catch (e) {
+      // Handle errors
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
+    return Scaffold(
+      extendBody: true,
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Lottie.asset(
-              '../assets/animation/back.json',
-              width: double.infinity,
-              fit: BoxFit.contain,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Lottie.asset(
+                'assets/animation/back.json',
+                width: double.infinity,
+                fit: BoxFit.fill,
+              ),
             ),
             const SizedBox(height: 10),
             const Text('let\'s connect with us!',
@@ -91,6 +145,32 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () async {
+                    _authenticate(context);
+                  },
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(
+                      Iconsax.finger_scan,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             const Text(
               'Forget Password?',
               style: TextStyle(fontFamily: 'my'),
@@ -104,7 +184,14 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     'Login',
                     style: TextStyle(
@@ -160,7 +247,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        '../assets/images/google.png',
+                        'assets/images/google.png',
                         height: 24,
                         width: 24,
                       ),
@@ -215,7 +302,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).viewInsets.bottom,
+            ),
           ],
         ),
       ),

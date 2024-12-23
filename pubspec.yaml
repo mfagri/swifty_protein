@@ -41,6 +41,7 @@ dependencies:
   device_preview: ^1.2.0
   iconsax: ^0.0.8
   http: ^0.13.6
+  local_auth: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +69,9 @@ flutter:
     - assets/ligands.txt
     - assets/images/back.gif
     - assets/images/google.png
-    - assets/animation
+    - assets/animation/
+    - assets/animation/atom.json
+    - assets/animation/back.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

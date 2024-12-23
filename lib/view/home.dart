@@ -142,6 +142,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               else
                 const SizedBox(),
+              const SizedBox(height: 20),
+              Expanded(
+                child: GridView.builder(
+                  padding: const EdgeInsets.all(8.0),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 1.0,
+                  ),
+                  itemCount: _ligands.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          _selectedLigand = _ligands[index][0];
+                        });
+                      },
+                      child: Card(
+                        color: Colors.grey[200],
+                        child: Center(
+                          child: Text(_ligands[index][0]),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

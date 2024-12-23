@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen>
         opacity: _animation,
         child: Center(
           child: Lottie.asset(
-            "../assets/animation/atom.json",
+            "assets/animation/atom.json",
             fit: BoxFit.cover,
             width: 300,
             height: 300,

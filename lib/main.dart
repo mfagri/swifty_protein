@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 
 void main() => runApp(
       DevicePreview(
+        enabled: false, // Add this line
         builder: (context) => const MyApp(), // Changed this line
       ),
     );

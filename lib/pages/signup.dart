@@ -166,7 +166,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ],
             ),
-            const Spacer(), // This pushes the button to the bottom
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: SizedBox(

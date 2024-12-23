@@ -1,6 +1,7 @@
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:swifty_protein/pages/signup.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,8 +18,8 @@ class _LoginPageState extends State<LoginPage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              '../assets/images/back.gif',
+            Lottie.asset(
+              '../assets/animation/back.json',
               width: double.infinity,
               fit: BoxFit.contain,
             ),
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
-                cursorColor: Colors.blue, // Changes cursor color
+                cursorColor: Colors.blue,
                 style: const TextStyle(
                   fontFamily: 'my',
                   fontSize: 14,
@@ -63,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 obscureText: true,
-                cursorColor: Colors.blue, // Changes cursor color
+                cursorColor: Colors.blue,
                 style: const TextStyle(
                   fontFamily: 'my',
                   fontSize: 14,

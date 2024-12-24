@@ -36,7 +36,6 @@ class PDBParser {
           atomIndexMap[pdbIndex] = currentIndex;
           currentIndex++;
         } catch (e) {
-          print('Error parsing atom line: $e');
           continue;
         }
       }
@@ -64,7 +63,6 @@ class PDBParser {
             }
           }
         } catch (e) {
-          print('Error parsing CONECT line: $e');
           continue;
         }
       }

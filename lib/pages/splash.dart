@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void onDoneLoading() {
-    Navigator.of(context).pushReplacement(
+    Navigator.of(context).pushAndRemoveUntil(
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const LoginPage(),
@@ -58,6 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
         },
         transitionDuration: const Duration(milliseconds: 800),
       ),
+      (route) => false,
     );
   }
 

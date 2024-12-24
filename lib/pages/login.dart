@@ -24,9 +24,11 @@ class _LoginPageState extends State<LoginPage> {
 
       log(availableBiometrics.toString());
       if (availableBiometrics.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No biometrics available')),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('No biometrics available')),
+          );
+        }
         return;
       }
 
@@ -63,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       extendBody: true,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -158,11 +161,12 @@ class _LoginPageState extends State<LoginPage> {
                         backgroundColor: Colors.blue,
                       ),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const HomeScreen(),
                           ),
+                          (route) => false,
                         );
                       },
                       child: const Text(

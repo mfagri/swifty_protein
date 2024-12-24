@@ -4,7 +4,7 @@ import 'package:device_preview/device_preview.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: false,
+        // enabled: false,
         builder: (context) => const MyApp(), // Changed this line
       ),
     );
